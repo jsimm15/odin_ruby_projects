@@ -25,17 +25,15 @@ class Square
   end
 end
 
-#Each GameBoard is consists of 9 Square Objects. There is not need for inheritance
+#Each GameBoard consists of 9 Square Objects. There is not need for inheritance
 class GameBoard
   attr_accessor :grid #Array containing 9 Square objects that make up game board
   
   def initialize
     @grid = []
-    #p @grid
     9.times do |i|
       self.grid.push(Square.new(i + 1))
     end
-    p @grid[8]::position
     self.print_board
   end
   
@@ -56,7 +54,6 @@ end
 class GameRound
   attr_accessor :turn, :win_con, :active_player
   
-  
   def initialize(gameboard_object)
     @board = gameboard_object #current GameBoard instance
     @turn = 1 
@@ -74,10 +71,9 @@ class GameRound
     while self.turn <= 9 && (!self.win_con)
       puts "Turn #{self.turn} Player #{self.active_player}:"
       selection = gets.chomp #User input
-      p "You chose square #{selection}"
+      puts "You chose square #{selection}"
        
       if /[0-9]/ =~ selection.to_s #Ensure number
-        puts "Thank you" 
         begin
           select_square(active_player, selection)
         rescue => e #Square::select_square will raise exception if selection not available
@@ -92,7 +88,7 @@ class GameRound
         
         if @win_con == true
           puts "Game Over! #{winner} wins!"
-          break
+          break 
         end
       else #User input was not numeric digit
         puts "Invalid input. Try again"
