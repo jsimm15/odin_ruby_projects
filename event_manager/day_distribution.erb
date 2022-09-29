@@ -1,0 +1,23 @@
+<DOCTYPE html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>Most Popular Day to Register</title>
+  </head>
+  <body>
+    <h1>Most Popular Day to Register</h1>
+   
+    <table>
+      <% if days.kind_of?(Hash) %>
+      <th>Day</th><th>Frequency</th>
+        <% days.each_key do |day| %>
+        <tr>
+          <td><%= "#{day}" %></td>
+          <td><%= "#{days[day]}" unless days[day].nil? %> </td>
+        </tr>
+        <% end %>
+        <% else %>
+        <% end %>
+  
+    </table>
+  </body>
+  </html>
